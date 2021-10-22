@@ -11,6 +11,7 @@ console.log("Inicializando");
 
 var requestsCounter = 0;
 var productid       = "";
+var httpPort        = 3001;
 
 const app = express();
 
@@ -29,8 +30,8 @@ app.use(function(req, res, next) {
 app.get('/', function(req, res){
 	requestsCounter++;
 	
-	var url1 = "http://localhost:81/produto/lento/1";
-	var url2 = "http://localhost:81/produto/rapido/2";
+	var url1 = "/produto/lento/1";
+	var url2 = "/produto/rapido/2";
 	
 	var body = "";
 	body += "<style>div {padding: 10px}</style>";
@@ -136,8 +137,8 @@ app.use(function(err, req, res, next) {
 });
 
 var httpServer = http.createServer(app);
-httpServer.listen(81,function(){
-	console.log(`Rodando na porta 81 (http)`);
+httpServer.listen(httpPort,function(){
+	console.log(`Rodando na porta httpPort (http)`);
 });
 
 console.log("Script inicializado");
